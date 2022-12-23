@@ -1,0 +1,30 @@
+<table>
+    <thead>
+        <tr>
+            <td *ngIf="tableDefinition.multiSelect">
+                <button (click)="selectAll()">all</button>
+            </td>
+
+            <th *ngFor="let header of tableDefinition.headers"> {{header}} </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor="let row of rows; let i = index">
+            <td *ngIf="tableDefinition.multiSelect">
+                <button *ngIf="selectedRowIndexes.includes(i)" (click)="toggleRow(i, $event)">deselect</button>
+                <button *ngIf="!selectedRowIndexes.includes(i)" (click)="toggleRow(i, $event)">select</button>
+            </td>
+
+            <ng-container *ngFor="let cellDefinition of tableDefinition.rowDefinition.cellDefinitions; let j = index">
+                <td (click)="toggleRow(i, $event)" (doubleClick)="editCell(i, j)">
+                    <app-editable-table-cell
+                        #cell
+                        [row]="row"
+                        [cellDefinition]="cellDefinition">
+                    </app-editable-table-cell>
+                </td>
+            </ng-container>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,21 @@
+<form [formGroup]="formGroup">
+    <div *ngIf="!editing" [ngClass]="{'error-background': formGroup.controls.cell.invalid && formGroup.controls.cell.touched}">
+        <ng-container *ngIf="cellDefinition.textFunction != null">
+            {{cellDefinition.textFunction(formGroup.controls.cell.value)}}
+        </ng-container>
+        
+        <ng-container *ngIf="cellDefinition.textFunction == null">
+            {{formGroup.controls.cell.value}}
+        </ng-container>
+    </div>
+    
+    <div *ngIf="editing">
+        <ng-container *ngIf="cellDefinition.type === text">
+            <input #input class="editable-table-cell" autofocus type="text" formControlName="cell"/>
+        </ng-container>
+        
+        <ng-container *ngIf="cellDefinition.type === integer || cellDefinition.type === number">
+            <input #input class="editable-table-cell" autofocus type="number" formControlName="cell"/>
+        </ng-container>
+    </div>
+</form>

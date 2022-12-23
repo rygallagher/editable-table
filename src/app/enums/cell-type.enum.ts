@@ -4,5 +4,5 @@ export enum CellType {
     Number,
     Integer,
     Date,
-    DropDown,    
+    DropDown,
 }

@@ -51,7 +51,7 @@ export class EditableTableComponent<T> implements OnInit, OnDestroy {
       } else {
         this.selectedRowIndexes.push(rowIndex);
       }
-    }       
+    }
   }
 
   closeEditingCells(mouseEvent: MouseEvent, cells: QueryList<EditableTableCellComponent<T>>): void {

@@ -44,17 +44,13 @@ export class EditableTableCellComponent<T> implements OnInit {
   dropDown = CellType.DropDown;
 
   constructor() {
-    const row = this.row;
-
     this.formGroup.controls.cell.valueChanges.subscribe(value => {
-      console.log('value', value)
+      const row = this.row;
 
       if (row != null && this.cellDefinition != null) {
         type ObjectKey = keyof typeof row;
         const key = this.cellDefinition.property as ObjectKey;
         row[key] = value;
-
-        console.log(row);
       } 
     });
   }
